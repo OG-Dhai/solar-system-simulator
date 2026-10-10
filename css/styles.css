@@ -1,0 +1,422 @@
+@import url('tokens.css');
+@import url('components.css');
+
+/* ==================================================
+   PROFESSIONAL 3D UI OVERRIDES
+   ================================================== */
+
+/* --- 3D Speed Buttons --- */
+.speed-button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.speed-btn.full-width {
+    grid-column: span 2;
+}
+
+.speed-btn {
+    flex: 1;
+    min-width: 60px;
+    padding: 10px 0;
+    background: rgba(255, 255, 255, 0.03);
+    /* Minimalist default */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    /* Sharper corners */
+    color: #8899aa;
+    font-family: var(--font-family-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3D Press Effect */
+.speed-btn:active {
+    transform: translateY(2px);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Active/Selected State */
+.speed-btn.active {
+    background: linear-gradient(145deg, #00d4ff, #0088cc);
+    color: #002244;
+    border-color: #00d4ff;
+    box-shadow:
+        0 0 15px rgba(0, 212, 255, 0.4),
+        inset 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+}
+
+.speed-btn:hover:not(.active) {
+    background: linear-gradient(145deg, rgba(60, 70, 90, 0.9), rgba(30, 40, 60, 0.9));
+    border-color: rgba(100, 200, 255, 0.5);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Collapsible Panel (Desktop & Mobile) --- */
+
+/* Override components.css desktop visibility */
+@media (min-width: 800px) {
+    .mission-control-panel {
+        transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+        padding-right: 0;
+        width: 320px;
+        right: 0;
+        /* Snapped to edge */
+        top: 20px;
+        transform: translateX(100%);
+        /* Hidden by default (Content width) */
+    }
+
+    .mission-control-panel.open {
+        transform: translateX(0);
+        /* Visible, flush to edge */
+    }
+
+    /* Make content always block, but container moves */
+    .mission-control-content {
+        display: block !important;
+        background: rgba(8, 12, 18, 0.75);
+        /* Darker, more neutral */
+        /* Darker, sleek glass */
+        backdrop-filter: blur(24px);
+        /* Heavier blur for premium feel */
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Subtler border */
+        border-right: none;
+        /* Flush with screen */
+        border-radius: 16px 0 0 16px;
+        box-shadow: -20px 0 50px rgba(0, 0, 0, 0.7);
+        /* Deeper shadow */
+    }
+
+    .mission-control-header {
+        display: none;
+        /* Hide header on desktop, just use content */
+    }
+
+    /* 3D Toggle Arrow (Desktop) */
+    .panel-toggle {
+        display: flex !important;
+        position: absolute;
+        left: -40px;
+        /* Shift out to make it visible when panel is hidden */
+        top: 20px;
+        width: 40px;
+        height: 60px;
+        background: rgba(0, 212, 255, 0.8);
+        border-radius: 8px 0 0 8px;
+        border: none;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1001;
+        color: #002233;
+    }
+
+    /* Remove old CSS arrow */
+    .panel-toggle::after {
+        display: none;
+    }
+
+    .arrow-icon {
+        transition: transform 0.4s ease;
+    }
+
+    /* Rotate arrow when open */
+    .mission-control-panel.open .panel-toggle .arrow-icon {
+        transform: rotate(180deg);
+    }
+
+    .panel-toggle:hover {
+        background: #00ffff;
+        width: 45px;
+        /* Pop out effect */
+        left: -45px;
+        box-shadow: -6px 6px 16px rgba(0, 212, 255, 0.4);
+    }
+}
+
+/* --- Mobile Fixes --- */
+@media (max-width: 799px) {
+    .mission-control-panel {
+        right: 10px;
+        width: auto;
+    }
+
+    .panel-toggle {
+        background: transparent;
+        box-shadow: none;
+        width: auto;
+        height: auto;
+        left: auto;
+        position: static;
+    }
+}
+
+/* ==================================================
+   VR & RECORDING BUTTONS (Inside Mission Control Panel)
+   ================================================== */
+
+/* Hide the default Three.js VR Button */
+#VRButton,
+.VRButton,
+button[id*="VRButton"] {
+    display: none !important;
+}
+
+/* VR Controls Group */
+.vr-controls-group {
+    margin-top: 8px;
+}
+
+/* VR and Record buttons in panel */
+.vr-btn,
+.record-btn-panel {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #8899aa;
+    font-family: var(--font-family-mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 10px 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.vr-btn:hover:not(:disabled),
+.record-btn-panel:hover {
+    background: linear-gradient(145deg, rgba(60, 70, 90, 0.9), rgba(30, 40, 60, 0.9));
+    border-color: rgba(100, 200, 255, 0.5);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.vr-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* VR Active State */
+.vr-btn.vr-active {
+    background: linear-gradient(145deg, #00d4ff, #0088cc);
+    color: #002244;
+    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Recording Active State */
+.record-btn-panel.recording {
+    background: linear-gradient(145deg, #ff4444, #cc2222);
+    color: #ffffff;
+    border-color: #ff4444;
+    animation: recording-pulse-panel 1.5s ease-in-out infinite;
+}
+
+@keyframes recording-pulse-panel {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
+    }
+}
+
+/* ==================================================
+   UTILITIES & OVERLAYS 
+   ================================================== */
+
+.hidden {
+    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Body Info Card (Floating Label) */
+.info-card {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #00d4ff;
+    color: #fff;
+    max-width: 300px;
+    font-family: 'Segoe UI', sans-serif;
+    pointer-events: none;
+    /* Let clicks pass through */
+    transition: opacity 0.3s ease;
+    z-index: 100;
+}
+
+.info-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+/* Loading Screen Styles (Ensure it covers everything) */
+/* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000005;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease-in-out;
+}
+
+#loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Sun Loader Container */
+.sun-loader-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* The Sun Body (Glass/Container) */
+.sun-loader-body {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 100, 0, 0.05);
+    border: 2px solid rgba(255, 160, 0, 0.3);
+    box-shadow: 0 0 30px rgba(255, 100, 0, 0.1);
+    overflow: hidden;
+    /* Mask for liquid */
+}
+
+/* The Liquid (Orange Juice/Plasma) */
+.sun-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    /* Starts at 0, goes to 100 */
+    background: linear-gradient(to top, #ff4500, #ff8c00, #ffd700);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+    transition: height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Liquid Wave Animation */
+.sun-liquid::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -50%;
+    width: 200%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 40%;
+    animation: wave 2.5s infinite linear;
+}
+
+.sun-liquid::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -50%;
+    width: 200%;
+    height: 25px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 45%;
+    animation: wave 4s infinite linear reverse;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulsing Ray Ring */
+.sun-ray-ring {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 200, 0, 0.3);
+    animation: spin-slow 10s linear infinite;
+}
+
+@keyframes spin-slow {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Text Group */
+.loader-text-group {
+    text-align: center;
+    font-family: 'Consolas', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.loader-percentage {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.loader-status {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}

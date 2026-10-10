@@ -1,0 +1,25 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Test output
+test-results/
+playwright-report/
+coverage/
+
+# Local scratch files
+test-fixes.js
+test-fixes.mjs
+test_fixes.html
+*.log
+*.webm
+
+# Environment and editor files
+.env
+.env.*
+!.env.example
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

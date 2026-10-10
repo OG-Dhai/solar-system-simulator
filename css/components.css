@@ -1,0 +1,865 @@
+/* ==================================================
+   Solar System Simulation - Component Styles
+   Reusable component classes using design tokens.
+   ================================================== */
+
+/* ==================================================
+   MISSION CONTROL PANEL - Professional Glassmorphism Design
+   ================================================== */
+
+.mission-control-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: var(--z-modal);
+    font-family: var(--font-family-base);
+    pointer-events: auto;
+    border-radius: var(--radius-xl);
+    overflow: visible;
+    /* Changed from hidden to allow external button */
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(145deg, rgba(20, 30, 50, 0.85), rgba(15, 25, 40, 0.85));
+    border: 1px solid rgba(100, 200, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.mission-control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: linear-gradient(to right, rgba(30, 40, 70, 0.9), rgba(20, 30, 50, 0.9));
+    border-bottom: 1px solid rgba(100, 200, 255, 0.2);
+}
+
+.mission-control-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-blue-primary);
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.mission-control-content {
+    background: rgba(15, 25, 40, 0.8);
+    padding: 20px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Control Groups */
+.control-group {
+    margin-bottom: 20px;
+    padding: 12px;
+    background: rgba(25, 35, 55, 0.4);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(100, 200, 255, 0.15);
+}
+
+.control-label {
+    display: block;
+    font-size: 12px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-blue-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(0, 212, 255, 0.2);
+}
+
+/* Selectors - Planet and Moon Dropdowns */
+.planet-selector,
+.moon-selector {
+    width: 100%;
+    padding: 12px 16px;
+    background: linear-gradient(to bottom, rgba(40, 50, 70, 0.8), rgba(30, 40, 60, 0.8));
+    border: 1px solid rgba(100, 200, 255, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--color-white);
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364c8ff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.planet-selector option,
+.moon-selector option {
+    background: rgba(20, 30, 50, 0.95);
+    color: var(--color-white);
+    padding: 10px;
+    border-bottom: 1px solid rgba(100, 200, 255, 0.1);
+}
+
+.planet-selector:hover:not(:disabled),
+.moon-selector:hover:not(:disabled) {
+    background: linear-gradient(to bottom, rgba(50, 60, 80, 0.9), rgba(40, 50, 70, 0.9));
+    border-color: rgba(100, 200, 255, 0.5);
+    box-shadow: 0 0 10px rgba(100, 200, 255, 0.2);
+}
+
+.planet-selector:focus,
+.moon-selector:focus {
+    outline: none;
+    border-color: var(--color-blue-primary);
+    box-shadow: 0 0 0 2px rgba(100, 200, 255, 0.3), 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.planet-selector:disabled,
+.moon-selector:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(40, 40, 60, 0.5);
+}
+
+/* Moon Selector Group - Hidden by default */
+.moon-selector-group {
+    display: none;
+}
+
+/* Simulation Controls */
+.sim-controls-group {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(100, 200, 255, 0.2);
+    background: rgba(20, 30, 50, 0.3);
+    border-radius: var(--radius-md);
+    padding: 16px;
+}
+
+.sim-button-row {
+    display: flex;
+    gap: 10px;
+}
+
+.sim-button {
+    flex: 1;
+    padding: 12px 16px;
+    background: linear-gradient(145deg, rgba(40, 50, 70, 0.8), rgba(30, 40, 60, 0.8));
+    border: 1px solid rgba(100, 200, 255, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--color-white);
+    font-size: 13px;
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.sim-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.sim-button:hover::before {
+    left: 100%;
+}
+
+.sim-button:hover {
+    background: linear-gradient(145deg, rgba(50, 60, 80, 0.9), rgba(40, 50, 70, 0.9));
+    border-color: rgba(100, 200, 255, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sim-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sim-button:focus {
+    outline: none;
+    border-color: var(--color-blue-primary);
+    box-shadow: 0 0 0 3px rgba(100, 200, 255, 0.3), 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.sim-button.active {
+    background: linear-gradient(145deg, rgba(0, 100, 150, 0.8), rgba(0, 80, 120, 0.8));
+    border-color: rgba(0, 212, 255, 0.7);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Slider Container */
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Time Warp Slider */
+.time-warp-slider,
+.moon-scale-slider {
+    flex: 1;
+    height: 6px;
+    background: linear-gradient(90deg, rgba(100, 200, 255, 0.3), rgba(100, 200, 255, 0.8));
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.time-warp-slider::-webkit-slider-thumb,
+.moon-scale-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #64c8ff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(100, 200, 255, 0.6);
+    transition: all 0.2s ease;
+}
+
+.time-warp-slider::-webkit-slider-thumb:hover,
+.moon-scale-slider::-webkit-slider-thumb:hover {
+    background: #7dd8ff;
+    box-shadow: 0 2px 12px rgba(100, 200, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.time-warp-slider::-moz-range-thumb,
+.moon-scale-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #64c8ff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(100, 200, 255, 0.6);
+    transition: all 0.2s ease;
+}
+
+.time-warp-slider:focus,
+.moon-scale-slider:focus {
+    outline: 2px solid rgba(100, 200, 255, 0.5);
+    outline-offset: 4px;
+}
+
+/* Slider Value Display */
+.time-warp-display,
+.slider-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64c8ff;
+    min-width: 100px;
+    text-align: right;
+}
+
+/* Reset Button */
+.reset-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, rgba(100, 200, 255, 0.3), rgba(100, 200, 255, 0.15));
+    border: 1px solid rgba(100, 200, 255, 0.5);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reset-button:hover {
+    background: linear-gradient(135deg, rgba(100, 200, 255, 0.5), rgba(100, 200, 255, 0.25));
+    border-color: rgba(100, 200, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(100, 200, 255, 0.3);
+}
+
+.reset-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(100, 200, 255, 0.3);
+}
+
+/* Panel Toggle Button (Mobile) */
+.panel-toggle {
+    background: linear-gradient(145deg, rgba(40, 50, 70, 0.8), rgba(30, 40, 60, 0.8));
+    border: 1px solid rgba(100, 200, 255, 0.3);
+    color: var(--color-white);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.panel-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.panel-toggle:hover::before {
+    left: 100%;
+}
+
+.panel-toggle:hover {
+    background: linear-gradient(145deg, rgba(50, 60, 80, 0.9), rgba(40, 50, 70, 0.9));
+    color: var(--color-blue-primary);
+    border-color: rgba(100, 200, 255, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.panel-toggle:focus {
+    outline: none;
+    border-color: var(--color-blue-primary);
+    box-shadow: 0 0 0 3px rgba(100, 200, 255, 0.3), 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.panel-toggle:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Mission Info Panel */
+.mission-info-panel {
+    border-top: 1px solid rgba(100, 200, 255, 0.2);
+    padding-top: 16px;
+    margin-top: 16px;
+    background: rgba(20, 30, 50, 0.3);
+    border-radius: var(--radius-md);
+    padding: 16px;
+}
+
+.info-title {
+    color: var(--color-blue-primary);
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 12px;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+.info-details {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    background: rgba(10, 20, 30, 0.4);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-blue-primary);
+}
+
+.info-row {
+    margin-bottom: 8px;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(100, 200, 255, 0.1);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: var(--color-blue-primary);
+    display: inline-block;
+    min-width: 100px;
+    font-weight: var(--font-weight-medium);
+}
+
+.info-value {
+    color: var(--color-white);
+    font-weight: var(--font-weight-medium);
+}
+
+.info-desc {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: 12px;
+    line-height: 1.6;
+    font-style: italic;
+    padding-top: 10px;
+    border-top: 1px solid rgba(100, 200, 255, 0.1);
+}
+
+/* FPS Counter */
+.mission-fps-counter {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(145deg, rgba(0, 20, 40, 0.85), rgba(0, 10, 20, 0.85));
+    color: var(--color-fps-good);
+    padding: 10px 16px;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--radius-md);
+    z-index: var(--z-modal);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+}
+
+.mission-fps-counter.warning {
+    color: var(--color-fps-warning);
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.mission-fps-counter.poor {
+    color: var(--color-fps-poor);
+    text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
+
+/* Help Overlay */
+.mission-help-overlay {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #aaa;
+    padding: 12px 16px;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-xs);
+    border-radius: 6px;
+    z-index: var(--z-modal);
+    line-height: 1.6;
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN - Mobile (<800px)
+   ================================================== */
+
+@media (max-width: 799px) {
+    .mission-control-panel {
+        width: auto;
+        min-width: 50px;
+    }
+
+    .mission-control-header {
+        border-radius: 12px;
+        padding: 8px;
+        justify-content: center;
+    }
+
+    .mission-control-header h2 {
+        display: none;
+    }
+
+    .mission-control-content {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 280px;
+        border-radius: 0 12px 12px 12px;
+        max-height: 400px;
+        overflow-y: auto;
+        z-index: 999;
+    }
+
+    .mission-control-content.show {
+        display: block;
+        animation: slideDown 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .mission-help-overlay {
+        display: none;
+    }
+}
+
+@media (min-width: 800px) {
+    .mission-control-panel {
+        width: 280px;
+    }
+
+    .mission-control-content {
+        display: block !important;
+    }
+
+    /* .panel-toggle { display: none !important; } - Removed to allow visible toggle on desktop */
+}
+
+/* Touch device improvements */
+@media (pointer: coarse) {
+
+    .planet-selector,
+    .moon-selector {
+        min-height: 48px;
+        padding: 12px;
+    }
+
+    .reset-button {
+        min-height: 48px;
+        padding: 14px;
+    }
+
+    .time-warp-slider::-webkit-slider-thumb,
+    .moon-scale-slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    .time-warp-slider::-moz-range-thumb,
+    .moon-scale-slider::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    .panel-toggle {
+        min-width: 48px;
+        min-height: 48px;
+    }
+}
+
+/* ==================================================
+   LEGACY STYLES - Kept for backwards compatibility
+   ================================================== */
+
+/* Solar Panel Container (Legacy - can be removed if not used elsewhere) */
+.solar-panel-container {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    min-width: 240px;
+    max-width: 280px;
+    font-family: var(--font-family-base);
+    color: var(--text-primary);
+    z-index: var(--z-modal);
+    box-shadow: var(--shadow-lg), var(--shadow-md);
+    pointer-events: auto;
+}
+
+.solar-panel-header {
+    color: var(--text-accent);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-4);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-accent);
+    letter-spacing: 1px;
+}
+
+/* Form Elements (Legacy) */
+.solar-select-group {
+    margin-bottom: var(--space-3);
+}
+
+.solar-label {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.solar-select {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: var(--font-size-md);
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300d4ff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.solar-select option {
+    background: #1a2535;
+    color: var(--text-primary);
+    padding: var(--space-2);
+}
+
+.solar-select:hover:not(:disabled) {
+    border-color: var(--border-accent-hover);
+    box-shadow: var(--shadow-sm);
+}
+
+.solar-select:focus {
+    border-color: var(--text-accent);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+}
+
+.solar-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Info Panel (Legacy) */
+.solar-info-panel {
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+    padding-top: 14px;
+    margin-top: 10px;
+}
+
+.solar-info-title {
+    color: var(--text-accent);
+    font-size: 1rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-2);
+}
+
+.solar-info-details {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.solar-info-row {
+    margin-bottom: 6px;
+}
+
+.solar-info-label {
+    color: var(--color-label-muted);
+}
+
+.solar-info-value {
+    color: var(--text-primary);
+}
+
+.solar-info-desc {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    margin-top: var(--space-2);
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* FPS Counter (Legacy) */
+.solar-fps-counter {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #0f0;
+    padding: 8px 12px;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    border-radius: var(--radius-sm);
+    z-index: var(--z-modal);
+}
+
+/* Help Overlay (Legacy) */
+.solar-help-overlay {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #aaa;
+    padding: 12px 16px;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-xs);
+    border-radius: 6px;
+    z-index: var(--z-modal);
+    line-height: 1.6;
+}
+
+/* Legacy Responsive */
+@media (max-width: 768px) {
+    .solar-panel-container {
+        top: auto;
+        bottom: 80px;
+        left: 10px;
+        right: 10px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .solar-panel-container {
+        padding: 12px;
+        min-width: auto;
+    }
+
+    .solar-panel-header {
+        font-size: 1rem;
+    }
+
+    .solar-select {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+}
+
+/* ==================================================
+   PROFESSIONAL NASA-STYLE DATE/TIME DISPLAY
+   ================================================== */
+
+.datetime-display {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(145deg, rgba(0, 10, 20, 0.85), rgba(0, 5, 15, 0.85));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 14px 28px;
+    border-radius: 35px;
+    border: 1px solid rgba(100, 200, 255, 0.3);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.datetime-display .live-indicator {
+    color: var(--color-fps-good);
+    font-size: 13px;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 1.2px;
+    animation: pulse 2s ease-in-out infinite;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(0, 255, 136, 0.15);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.datetime-display .datetime-date {
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.8px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.datetime-display .datetime-rate {
+    color: var(--color-blue-primary);
+    font-size: 14px;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 5px 14px;
+    background: rgba(100, 200, 255, 0.15);
+    border-radius: 18px;
+    border: 1px solid rgba(100, 200, 255, 0.3);
+    text-shadow: 0 0 8px rgba(100, 200, 255, 0.3);
+}
+
+.datetime-display .datetime-time {
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family-mono);
+    letter-spacing: 1.2px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive: Hide on very small screens */
+@media (max-width: 500px) {
+    .datetime-display {
+        padding: 8px 16px;
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    .datetime-display .datetime-date,
+    .datetime-display .datetime-time {
+        font-size: 12px;
+    }
+
+    .datetime-display .datetime-rate {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
+}
+
+/* ==================================================
+   IMPROVED BUTTON STYLING (NASA-Style)
+   ================================================== */
+
+.sim-button {
+    flex: 1;
+    padding: 10px 14px;
+    background: rgba(40, 50, 70, 0.8);
+    border: 1px solid rgba(100, 200, 255, 0.3);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sim-button:hover {
+    background: rgba(100, 200, 255, 0.25);
+    border-color: rgba(100, 200, 255, 0.6);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(100, 200, 255, 0.2);
+}
+
+.sim-button:active {
+    transform: translateY(0);
+}
+
+.sim-button.active {
+    background: rgba(100, 200, 255, 0.3);
+    border-color: rgba(100, 200, 255, 0.7);
+    box-shadow: 0 0 10px rgba(100, 200, 255, 0.3);
+}
